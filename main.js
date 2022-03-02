@@ -6,12 +6,13 @@
 const squareContainer = document.querySelector('.square-container')
 
 
-function createSquares (side) {
-for (let i = 0; i< (side*side); i++) {
-const square = document.createElement('div');
-square.classList.toggle('square');
-squareContainer.appendChild(square);
-}};
+function createSquares(side) {
+    for (let i = 0; i < (side * side); i++) {
+        const square = document.createElement('div');
+        square.classList.toggle('square');
+        squareContainer.appendChild(square);
+    }
+};
 
 //Initial run of the program to create a 16x16 grid
 createSquares(16);
@@ -24,3 +25,22 @@ squares.forEach(square => square.addEventListener('mouseover', function () {
 }));
 
 const clearButton = document.querySelector('.clear-button');
+clearButton.addEventListener('click', clearSquares);
+
+function clearSquares() {
+    const squares = document.querySelectorAll('.square');
+    squareContainer.remove(squares);
+}
+
+const newButton = document.querySelector('.new-button');
+newButton.addEventListener('click', createSquares);
+
+function askSides() {
+    let side = +prompt('How many squares on each side?');
+    if (side > 100) {
+        side = +prompt('How many squares on each side?');
+    }
+    return side;
+}
+
+

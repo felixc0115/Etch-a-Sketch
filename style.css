@@ -19,7 +19,7 @@ border: 1px solid black;
     background: blue;
 }
 
-.clear-button {
+.clear-button, .new-button {
     height: 50px;
     width: 100px;
 }
