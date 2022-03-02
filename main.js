@@ -6,18 +6,17 @@
 const squareContainer = document.querySelector('.square-container')
 
 
-function createSquares(side) {
+function createSquares() {
+    let side = +prompt('How many squares on each side?');
+    if (side > 100) {
+        side = +prompt('How many squares on each side?');
+    }
     for (let i = 0; i < (side * side); i++) {
         const square = document.createElement('div');
         square.classList.toggle('square');
         squareContainer.appendChild(square);
     }
 };
-
-//Initial run of the program to create a 16x16 grid
-createSquares(16);
-
-
 //Adds an event listener to each square with a mouseover event 
 const squares = document.querySelectorAll('.square');
 squares.forEach(square => square.addEventListener('mouseover', function () {
@@ -29,18 +28,13 @@ clearButton.addEventListener('click', clearSquares);
 
 function clearSquares() {
     const squares = document.querySelectorAll('.square');
-    squareContainer.remove(squares);
+    console.log(squares);
+    for (let square of squares) {
+    squareContainer.removeChild(square);}
 }
 
 const newButton = document.querySelector('.new-button');
 newButton.addEventListener('click', createSquares);
 
-function askSides() {
-    let side = +prompt('How many squares on each side?');
-    if (side > 100) {
-        side = +prompt('How many squares on each side?');
-    }
-    return side;
-}
 
 
