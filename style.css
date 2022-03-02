@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+.square-container {
+    height: 800px;
+    width: 800px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.square {
+height: 60px;
+width: 60px;
+border: 1px solid black;
+}
+
+.highlight-square {
+    background: blue;
+}
+
+.clear-button {
+    height: 50px;
+    width: 100px;
+}
+
