@@ -3,38 +3,61 @@
 //Program displays the new grid that takes up the same amount of space as the 16x16 grid 
 //
 
-const squareContainer = document.querySelector('.square-container')
+const largeSquareContainer = document.querySelector('.large-square-container')
 
 
-function createSquares() {
+function createRowsAndSquares() {
+    clearSquares();
     let side = +prompt('How many squares on each side?');
     if (side > 100) {
         side = +prompt('How many squares on each side?');
     }
-    for (let i = 0; i < (side * side); i++) {
-        const square = document.createElement('div');
-        square.classList.toggle('square');
-        squareContainer.appendChild(square);
+
+    for (let i = 0; i < side; i++) {
+        const rowContainer = document.createElement('div');
+        rowContainer.classList.add('row-container');
+        largeSquareContainer.appendChild(rowContainer);
+
+        for (let i = 0; i < side; i++) {
+            const square = document.createElement('div');
+            square.classList.toggle('square');
+            rowContainer.appendChild(square);
+        }
+
     }
+
+
+    //Adds an event listener to each square with a mouseover event 
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => square.addEventListener('mouseover', function () {
+        square.style.background = generateRandomColor();
+    }));
 };
-//Adds an event listener to each square with a mouseover event 
-const squares = document.querySelectorAll('.square');
-squares.forEach(square => square.addEventListener('mouseover', function () {
-    square.classList.toggle('highlight-square');
-}));
+
+
+function generateRandomColor() {
+    const r = Math.floor(Math.random() * 255) + 1;
+    const g = Math.floor(Math.random() * 255) + 1;
+    const b = Math.floor(Math.random() * 255) + 1;
+    return `rgb(${r},${b},${g})`;
+}
 
 const clearButton = document.querySelector('.clear-button');
 clearButton.addEventListener('click', clearSquares);
 
 function clearSquares() {
-    const squares = document.querySelectorAll('.square');
-    console.log(squares);
-    for (let square of squares) {
-    squareContainer.removeChild(square);}
-}
+    const rowContainers = document.querySelectorAll('.row-container');
 
+    for (let row of rowContainers) {
+        const squares = row.querySelectorAll('.square');
+        for (let square of squares) {
+            row.removeChild(square);
+        }
+        largeSquareContainer.removeChild(row);
+    }
+}
 const newButton = document.querySelector('.new-button');
-newButton.addEventListener('click', createSquares);
+newButton.addEventListener('click', createRowsAndSquares);
 
 
 

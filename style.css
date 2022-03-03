@@ -2,17 +2,26 @@
     box-sizing: border-box;
 }
 
-.square-container {
+.large-square-container {
     height: 960px;
     width: 960px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
+    overflow: auto;
+}
+
+.row-container {
+    display:flex;
+    flex-flow: row nowrap;
+    /* height: 100px;
+    border: 1px solid black; */
 }
 
 .square {
 height: 60px;
 width: 60px;
 border: 1px solid black;
+flex: 1 1 auto;
 }
 
 .highlight-square {
